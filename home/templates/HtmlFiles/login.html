@@ -1,0 +1,132 @@
+
+<!doctype html>
+<html lang="en">
+{% load  static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'users/css/login.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
+
+
+  <!--Font awesome link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Login</title>
+</head>
+
+<body>
+
+<div >
+  <nav   class="navbar navbar-expand-lg navbar-light bg-transperant sticky-top">
+
+    <a style="color:black;"  class="navbar-brand" href="/homebefore/">
+    <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+        <li class="nav-item" >
+            <a style="color:black;" class="nav-link" href="/homebefore/">Home</a>
+        </li>
+  <li class="nav-item">
+            <a style="color:black;" class="nav-link" href="/login/">Login</a>
+        </li>
+  <li class="nav-item">
+            <a style="color:black;"  class="nav-link" href="/register/">Register</a>
+        </li>
+        
+  
+        
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+  <!-- signUp-Modal-->
+  
+		 
+      <body>
+        <div class="center">
+          
+          <h1>Login</h1>
+          <form method="post">
+            {% csrf_token %}
+            <div class="txt_field">
+              <input type="text" name='name' required>
+              <span></span>
+              <label>Username</label>
+              
+            </div>
+            <div class="txt_field">
+              <input type="password" name='password' id="password1" required>
+              <span></span>
+              <label>Password</label>
+            </div>
+            {% for message in messages %}
+    
+            <div class="alert alert-success">
+                <a class="close" href="/login/" data-dismiss="alert">×</a>
+                   {{ message }}
+            </div>
+        
+        {% endfor %}
+            <input type="submit" value="login"</a>
+            
+            <div class="signup_link">
+              Not a member? <a href="/register/">Signup</a>
+            </div>
+            <div class="signup_link">
+              <a href="/reset_password/">Forgot Password?</a>
+            </div>
+          </form>
+        </div>
+    
+      </body>
+      
+          
+            
+            <script>
+              function myFunction1() {
+                var x = document.getElementById('password1');
+                if (x.type === 'password1') {
+                  x.type = 'text';
+                } else {
+                  x.type = 'password1';
+                }
+              }
+            </script>
+             
+              
+        
+
+            <br>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+
+
+
+</body>
+
+</html>

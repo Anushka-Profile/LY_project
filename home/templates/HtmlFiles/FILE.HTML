@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    {% load  static %}
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+ 
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <!-- Bootstrap CSS -->	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/file.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+  <!--Font awesome link-->
+  
+
+
+  <!--Font awesome link-->
+  
+
+
+</head>
+
+    
+    
+   
+
+
+<body>
+  <div class="ok">
+    <nav class="navbar navbar-expand-lg navbar-light  bg-transperant sticky-top">
+
+      <a class="navbar-brand" href="/home/">
+      <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+          <li class="nav-item">
+              <a class="nav-link"style="color:black;" href="/home/">Home</a>
+          </li>
+    <li class="nav-item">
+              <a class="nav-link"style="color:black;" href="/viewmyreports/">MyReports</a>
+          </li>
+    <li class="nav-item">
+              <a class="nav-link" style="color:black;"href="/FILE/">Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color:black;"href="/viewDoctor/" >Book A Doctor</a>
+          </li>
+    <li class="nav-item">
+    {% if user.is_authenticated %}
+    {% csrf_token %}
+    <font size="+1"> <a class="nav-link" style="color:black;"href="/userProfile/">{{name}}</a></font>
+              {% endif %}
+          </li>
+    <li class="nav-item">
+              <a class="nav-link" style="color:black;"href="/logout/">Logout</a>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+	
+{% block content %}
+
+
+
+
+<form action="/fileData/" method="post"  enctype="multipart/form-data">
+
+    {% csrf_token %}              
+
+    <label><font size="+2">Name:</label></font>
+  
+    &nbsp  &nbsp  &nbsp  &nbsp &nbsp&nbsp&nbsp&nbsp &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp  &nbsp<input  class="filename" type="text" name='reportname'><BR>
+    <label><font size="+2">Password if any:</label></font>
+    &nbsp  &nbsp
+    <input  class="passwords" type="text" name='password'><br>
+    <div>
+      <br>
+          <input  class="upload" type="file" name="document" multiple> </div><br>
+                    
+                    <p>Drag Your Image or PDF report in this area.</p>
+  
+<button onclick="myFunction()" class="buttons">Upload</button></a>
+
+                   
+                    
+                
+          
+
+            </form>
+            {% for message in messages %}
+    
+            <div class="alert alert-danger">
+                <a class="close" href="/FILE/" data-dismiss="alert">x</a>
+                   {{ message }}
+            </div>
+        
+        {% endfor %}
+   
+    
+   
+
+    {% endblock %} 
+
+    
+    
+          </div>
+   
+      
+      
+
+    <!-- <script>
+      $(document).ready(function(){
+        $('upload').change(function () {
+          $('form p').text(this.files.length + " file(s) selected");
+        });
+      });
+    </script> -->
+  </div>
+</div>
+  </body>
+  </html>

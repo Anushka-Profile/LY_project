@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'users/css/viewDoctor.css' %}">
+    <!--Font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
+   <!--Font awesome link-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>DoCure</title>
+</head>
+
+<body>
+    <div class="ok"><!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light  bg-transperant sticky-top">
+
+            <a class="navbar-brand" href="/home/">
+            <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+            </a>
+      
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    
+              <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    
+                <li class="nav-item">
+                    <a class="nav-link"style="color:black;" href="/home/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"style="color:black;" href="/viewmyreports/">MyReports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:black;"href="/FILE/">Upload</a>
+                </li>
+                <li class="nav-item">
+                    <font size="+2"><a class="nav-link" style="color:black;"href="/viewDoctor/" >Book A Doctor</a></font>
+                </li>
+                <li class="nav-item">
+          {% if user.is_authenticated %}
+          {% csrf_token %}
+          <font size="+3"> <a class="nav-link" style="color:black;"href="/userProfile/">{{name}}</a></font>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:black;"href="/logout/">Logout</a>
+                </li>
+                
+              </ul>
+            </div>
+          </nav>
+
+
+    <section id="header" style="background:url('../PUBLIC/images/img/desktop/9.png') no-repeat center center fixed; background-size:cover;" class="jumbotron text-center">
+        <div class="container">
+
+           
+            
+
+    <!--second carousal-->
+    <form action="" method="post">
+        <section id="gallery">
+            <div class="container"style="text-align: center; ">
+                <div class="row">
+                    
+                    {% for i in d1 %}
+
+                    
+            
+                
+                     <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div style="text-align: center; ">
+                                       
+                                        <h3 class="card-title"><b>Name:{{i.username}}</b></h3>
+                                      
+                                        <p class="card-tetx"> <b>Gender:{{i.doctor.gender}}</b></p></p>
+                                        <p class="card-tetx"> <b>Specialization:{{i.doctor.Specialization}}</b></p></p>
+                                        {% if i.status == 0 %}
+                                        <div class="mx-2">
+                                            <a href="{% url 'docRequest' i.id%}"><button type="button" onclick="two();"  name="{{i}}" class="btn btn-outline-success btn-m" data-toggle="modal" 
+                                                data-target="#loginModal1" value="{{i}}">book</button></a>
+                                        </div>
+                                        {% elif i.status == 1 %}
+                                        <div class="mx-2">
+                                            <a href=""><button type="button" onclick="two();"  name="{{i}}" class="btn btn-outline-success btn-m" data-toggle="modal" 
+                                                data-target="#loginModal1" value="{{i}}">Pending</button></a>
+                                        </div>
+                                        {% elif i.status == 2 %}
+                                        <div class="mx-2">
+                                            <a href=""><button type="button" onclick="two();"  name="{{i}}" class="btn btn-outline-success btn-m" data-toggle="modal" 
+                                                data-target="#loginModal1" value="{{i}}">Accepted</button></a>
+                                        </div>
+                                        {% elif i.status == 3 %}
+                                        <div class="mx-2">
+                                            <a href=""><button type="button" onclick="two();"  name="{{i}}" class="btn btn-outline-success btn-m" data-toggle="modal" 
+                                                data-target="#loginModal1" value="{{i}}">Rejected</button></a>
+                                        </div>
+                                        {% endif %}
+                                    
+                                       
+                                    
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <br><br>
+                            </div>
+                    
+                           {% endfor %}
+                            
+                    
+                </div>
+            </div>
+            <br>
+        </section>
+    </form>
+    
+
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+        <script>
+            function two() {
+                alert('Thankyou You Have succcessfully Booked a Doctor');
+                window.location.href = 'HtmlFiles/viewDoctor.html';
+              }
+</script>
+</div>
+</body>
+
+</html>

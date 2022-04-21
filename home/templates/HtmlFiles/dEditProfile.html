@@ -1,0 +1,164 @@
+
+  
+  <!--Navbar-->
+  <!doctype html>
+  <html lang="en">
+  {% load static %}
+  {% load crispy_forms_tags %}
+  
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/edit.css' %}"> 
+  
+  
+    <!--Font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Edit</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+    <!-- Font Awesome CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  </head>
+  
+  <body>
+    <div class="ok">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light  bg-transperant sticky-top">
+  
+      <a class="navbar-brand" href="/viewPatients/">
+      <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+      </a>
+  
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+  
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+  
+          <li class="nav-item">
+              <a class="nav-link"style="color:black;" href="/viewPatients/">Home</a>
+          </li>
+    <li class="nav-item">
+              <a class="nav-link"style="color:black;" href="/docviewmyreports/">MyReports</a>
+          </li>
+    <li class="nav-item">
+    {% if name %}
+    {% csrf_token %}
+    <a class="nav-link" style="color:black;"href="/userProfile/">{{name.username}}</a>
+              {% endif %}
+          </li>
+    <li class="nav-item">
+              <a class="nav-link" style="color:black;"href="/Doctorlogout_view/">Logout</a>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+
+<body>
+  <script type="text/javascript">
+    function validate(form) {
+      var em= document.getElementById('id_email').value;
+      var ema = document.getElementById('id_email');
+
+     
+      var sn=document.getElementById('id_Surname').value;
+      var sna= document.getElementById('id_Surname');
+      var nn=document.getElementById('id_username').value;
+      var nna= document.getElementById('id_username');
+      var ph=document.getElementById('id_phone_number').value;
+      var pha=document.getElementById('id_phone_number');
+      var spe=document.getElementById('id_Specialization').value;
+      var spes = document.getElementById('id_Specialization');
+      var gend=document.getElementById('id_gender').value;
+      var gen=document.getElementById('id_gender');
+
+
+      {% comment %} var gends = gen.options[gen.selectedIndex].value;
+      var sepss = spes.options[spes.selectedIndex].value; {% endcomment %}
+      
+      var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+     var phone=/^\+?1?\d{9,15}$/;
+      var sname=/^[A-Za-z]+$/;
+      var name=/^[A-Za-z]+$/;
+    if(gen.value!=""){
+      gen.style.border = "green solid 3px";
+      if(spes.value!=""){
+        spes.style.border = "green solid 3px";
+     
+    if (name.test(nn)) {
+      nna.style.border = "green solid 3px";
+      if (sname.test(sn)){ 
+        sna.style.border = "green solid 3px";
+        if (re.test(em)){
+          ema.style.border = "green solid 3px";
+            if(phone.test(ph)){ 
+              pha.style.border = "green solid 3px";
+                
+              document.getElementById("myForm").submit();
+                 return true;}
+                 else{
+                  pha.style.border = "red solid 3px";
+                  return false;}
+                 }
+            else{
+              ema.style.border = "red solid 3px";
+              return false;}
+            }
+            
+
+      else{
+        sna.style.border = "red solid 3px";
+      return false;
+      }
+    }
+    else {
+      nna.style.border = "red solid 3px";
+      return false;
+ 
+
+    }
+  }
+  else
+  {
+    spes.style.border = "red solid 3px";
+    return false;
+
+  }}
+else{
+  gen.style.border = "red solid 3px";
+    return false;
+}}
+</script>
+<font size="+3"><h6 style="text-align:center;">Please Edit Your Profile</h6></font>
+<div class="dd">
+    <form id="myForm" action="/deditProfile/" method="post">
+  <div class="scroll">
+        {% csrf_token %}
+        {{form|crispy}}
+        
+        <input type="button" onclick="validate()"  value="Confirm">
+ 
+    </form>
+  </div>
+</div>
+</body>
+</html>

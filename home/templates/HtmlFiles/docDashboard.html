@@ -1,0 +1,841 @@
+<!Doctype HTML>
+{% load static %}
+{% load crispy_forms_tags %}
+<html>
+<head>
+	<title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+ 
+
+    <!-- Required css files -->
+	<link rel="stylesheet" type="text/css" href="{% static 'users/css/Dashboard.css' %}"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+    <!-- Required js files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</head>
+
+
+<body>
+    <div class="ok">
+        <nav class="navbar navbar-expand-lg navbar-light  bg-transperant sticky-top">
+    
+            <a class="navbar-brand" href="/home/">
+            <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+            </a>
+      
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    
+              <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+    
+                <li class="nav-item">
+                    <a class="nav-link"style="color:black;" href="/viewPatients/">Home</a>
+                </li>
+                
+                <li class="nav-item">
+          {% if name %}
+          {% csrf_token %}
+          <font size="+3"> <a class="nav-link" style="color:black;"href="/doctorProfile/">{{name.username}}</a></font>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:black;"href="/Doctorlogout_view/">Logout</a>
+                </li>
+                
+              </ul>
+            </div>
+          </nav>
+      
+	
+        <div id="main">
+	
+
+	
+	
+            <div class="clearfix"></div>
+        </div> 
+        
+        
+        
+        
+                
+        
+        
+            <br>
+            
+            
+            <!--learn-->
+            
+    
+               <!--second carousal-->
+               <div class="container text-center my-3">
+                <!-- <h2 class="font-weight-light">Bootstrap 4 - Multi Item Carousel</h2> -->
+                <div class="row mx-auto my-auto">
+                    <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                        <div class="carousel-inner w-100" role="listbox">
+                            <div class="carousel-item active">
+                                <div class="col-md-4">
+                                    <div class="card">
+                            
+                                <div class="card-body">
+                                    {% if all_report.pc > 4000000  %}
+                                    
+                                    <p ><span style="color:red;"><font size="+2">Platelet Count</font></bold></span></p>
+                                    {% elif  all_report.pc < 15000000 %}
+                                    <p ><span style="color:green;"><font size="+2">Platelet Count</font></bold></span></p>
+                                     
+                                     {% else %}
+                                     <p ><span style="color:yellow;"><font size="+2">Platelet Count</font></bold></span></p>
+                                     {% endif %}
+                                   
+                            {% if all_report %}
+                                   <div class="numberCircle">{{all_report.pc}}</div>   {% endif %}
+                                  
+                               
+        
+                     
+                
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-md-4">
+                                    <div class="card">
+                             
+                                <div class="card-body">
+                                    {% if all_report.rbc > 6.1 %}
+                                    
+                                    <p ><span style="color:red;"><font size="+2">Red Blood Cells</font></bold></span></p>
+                                    {% elif  all_report.rbc < 4.2 %}
+                                    <p ><span style="color:red;"><font size="+2">Red Blood Cells</font></bold></span></p>
+                                     
+                                     {% elif 4.42 < all_report.rbc < 6.61 %}
+                                     <p ><span style="color:yellow;"><font size="+2">Red Blood Cells</font></bold></span></p>
+                                     {% endif %}
+                                   
+                                    {% if all_report %}
+                                   
+            
+            
+                                   <div class="numberCircle">{{all_report.rbc}}</div>
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                <div class="card-body">
+                                    {% if all_report.wbc > 10000 %}
+                                    
+                                    <p ><span style="color:red;"><font size="+2">White Blood Cells</font></bold></span></p>
+                                    {% elif  all_report.wbc < 5000 %}
+                                    <p ><span style="color:green;"><font size="+2">White Blood Cells</font></bold></span></p>
+                                     
+                                     {% else %}
+                                     <p ><span style="color:yellow;"><font size="+2">White Blood Cells</font></bold></span></p>
+                                     {% endif %}
+                                    {% if all_report %}
+                                   
+                                    
+            
+                                 
+                                   <div class="numberCircle">{{all_report.wbc}}</div>
+                                   {% endif %}
+                                    
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                    <div class="col-md-4">
+                                    <div class="card">
+                           
+                                <div class="card-body">
+                                    {% if all_report.hgb > 16 %}
+                                    
+                                    <p ><span style="color:red;"><font size="+2">Hemoglobin</font></bold></span></p>
+                                    {% elif  all_report.hgb < 12 %}
+                                    <p ><span style="color:green;"><font size="+2">Hemoglobin</font></bold></span></p>
+                                     
+                                     {% else %}
+                                     <p ><span style="color:yellow;"><font size="+2">Hemoglobin</font></bold></span></p>
+                                     {% endif %}
+                                    {% if all_report %}
+                                
+                                     
+                                       <div class="numberCircle">{{all_report.hgb}}</div>  {% endif %} 
+                                    
+                                   
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-md-4">
+                                     <div class="card">
+                             
+                                <div class="card-body">
+                                    {% if all_report.rcd > 14.6 %}
+                                    
+                                    <p ><span style="color:red;"><font size="+2">Red Cell Distribution</font></bold></span></p>
+                                    {% elif  all_report.rcd < 11.6 %}
+                                    <p ><span style="color:green;"><font size="+2">Red Cell Distribution</font></bold></span></p>
+                                     
+                                     {% else %}
+                                     <p ><span style="color:yellow;"><font size="+2">Red Cell Distribution</font></bold></span></p>
+                                     {% endif %}
+                                    {% if all_report %}
+                                   
+                                   <div class="numberCircle">{{all_report.rcd}}</div> {% endif %}
+                                    
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-md-4">
+                                    <div class="card card-body">
+                                        {% if all_report.mchc > 36 %}
+                                    
+                                        <p ><span style="color:red;"><font size="+1">Mean Corpuscular Hb Conc</font></bold></span></p>
+                                        {% elif  all_report.mchc < 33 %}
+                                        <p ><span style="color:green;"><font size="+1">Mean Corpuscular Hb Conc</font></bold></span></p>
+                                         
+                                         {% elif  33.2 < all_report.mchc < 35.5 %}
+                                         <p ><span style="color:yellow;"><font size="+1">Mean Corpuscular Hb Conc</font></bold></span></p>
+                                         {% endif %}
+                                        {% if all_report %}
+                            
+                
+                                      
+                                       <div class="numberCircle">{{all_report.mchc}}</div> {% endif %}
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-md-4">
+                                    <div class="card card-body">
+                                        {% if all_report.mpv > 12.5 %}
+                                    
+                                        <p ><span style="color:red;"><font size="+2">Mean Platelet Volume</font></bold></span></p>
+                                        {% elif  all_report.mpv < 7.5 %}
+                                        <p ><span style="color:green;"><font size="+2">Mean Platelet Volume</font></bold></span></p>
+                                         
+                                         {% else %}
+                                         <p ><span style="color:yellow;"><font size="+2">Mean Platelet Volume</font></bold></span></p>
+                                         {% endif %}
+                                        {% if all_report %}
+                                      
+                
+                
+                               
+                                       <div class="numberCircle">{{all_report.mpv}}</div> {% endif %}
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-md-4">
+                                    <div class="card card-body">
+                                        {% if all_report.pcv > 1000 %}
+                                    
+                                        <p ><span style="color:red;"><font size="+2"></font></bold></span></p>
+                                        {% elif  all_report.pcv < 5000 %}
+                                        <p ><span style="color:green;"><font size="+2">White Blood Cells</font></bold></span></p>
+                                         
+                                         {% else %}
+                                         <p ><span style="color:yellow;"><font size="+2">White Blood Cells</font></bold></span></p>
+                                         {% endif %}
+                                        {% if all_report %}
+                                    
+                
+                
+                              
+                                       <div class="numberCircle">{{all_report.pcv}}</div> {% endif %}
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-md-4">
+                                    <div class="card card-body">
+                                        {% if all_report.mcv > 96 %}
+                                    
+                                        <p ><span style="color:red;"><font size="+2">Mean Cell Volume</font></bold></span></p>
+                                        {% elif  all_report.mcv < 80 %}
+                                        <p ><span style="color:green;"><font size="+2">Mean Cell Volume</font></bold></span></p>
+                                         
+                                         {% else %}
+                                         <p ><span style="color:yellow;"><font size="+2">Mean Cell Volume</font></bold></span></p>
+                                         {% endif %}
+                                        {% if all_report %}
+        
+                                     
+        
+                                      
+                                       
+                
+                                      
+                                       <div class="numberCircle">{{all_report.mcv}}</div> {% endif %}
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"
+                                aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle"
+                                aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+        
+                  
+        
+        
+        
+            </div>
+            <div id="leftbox">      
+            <BR><br>
+                
+            <div style="overflow-x:auto;">  
+                
+                <div class="scroll">
+                    
+                <table>
+                    
+                  <tr>
+                    <th>Name</th>
+                    <th>Normal Range</th>
+                    <th>Report Value</th>
+                    <th>Remark</th>
+                  </tr>
+                  
+                  <tr>
+                      
+                    <td>RBC</td>
+                    <td>4.2-6.1 million cells/mcL</td>
+                    {% if all_report %}
+                    <td >{{all_report.rbc}} million cells/mcL</td>
+                    {% endif %}
+                    <td>
+                      
+                   
+                            <a class="button" href="#popup1">Read More</a>
+                    
+                        
+                        <div id="popup1" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a><br>
+                                <div class="content"> 
+        
+                                    {% if all_report.rbc > 6.1 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">High Red Blood Cells</font></strong>- An elevated RBC count can be caused by dehydration, living at high altitude, performance-enhancing drugs, smoking, chronic lung disease, chronic heart disease, polycythemia vera, or, in some cases, certain tumors. 
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong> If a medical condition is causing a high red blood cell count, your doctor may recommend a procedure or medication to lower it. In a procedure called a phlebotomy, a health professional inserts a needle into your vein and drains blood through a tube into a bag or container.
+                                    </div>
+        
+                                   {% elif  all_report.rbc < 4.2 %}
+                                   <div class="scrolls">
+                                        <strong><font size="+1">Low Red Blood Cells</font></strong>- A low RBC count means the oxygen-carrying capacity of the blood is reduced, a condition called anemia. Anemia has many potential causes, but in general, is caused either by reduced production of red cells in the bone marrow or by an increased loss of red cells due to bleeding or other factors. 
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        Eating foods rich in these five nutrients can help you improve your red blood cell levels:
+                                        <br><br>
+                                        <strong><font size="+1">Iron:</font></strong>
+                                        red meat, such as beef, organ meat, such as kidney and liver, dark, leafy, green vegetables, such as spinach and kale, dried fruits, such as prunes and raisins, beans, legumes, egg yolks
+                                        <br><br><strong><font size="+1">Folic Acid:</font></strong>
+                                        Adding certain B vitamins to your diet can also be beneficial. Foods high in vitamin B-9 (folic acid) include: enriched breads, enriched cereals, dark, leafy, green vegetables, such as spinach and kale, beans, lentils, peas, nuts
+                                        <br><br><strong><font size="+1">Vitamin B-12:</font></strong>
+                                        Foods high in vitamin B-12 include: red meat, such as beef,fish, dairy products, such as milk and cheese,eggs
+                                        <br><br><strong><font size="+1">Copper:</font></strong>
+                                        Copper intake does not directly result in RBC production, but it can help your RBCs access the iron they need to replicate. Foods high in copper include: poultry, shellfish, liver, beans, cherries, nuts
+                                        <br><br><strong>Vitamin A</strong>
+                                        Foods rich in vitamin A include: dark, leafy green vegetables, such as spinach and kale, sweet potatoes, squash, carrots, red peppers, fruits, such as watermelon, grapefruit, and cantaloupe.
+                                    </div>
+                                    
+                                    {% else %}
+                                        <strong><font size="+1">Well Done!!</font></strong> Your RBC is in optimal range. You are healthy.
+                                    {% endif %}
+        
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>WBC</td>
+                    <td>5000-10000 cells/mcL</td>
+                    {% if all_report %}
+                    <td>{{all_report.wbc}} cells/mcL</td>
+                    {% endif %}
+                    <td>
+                      
+                       
+                            <a class="button" href="#popup2">Read More</a>
+                    
+                        
+                        <div id="popup2" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a><br>
+                                <div class="content">
+                                   
+                                    {% if all_report.wbc > 10000 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">High White Blood Cells</font></strong>- An elevated white blood cell count (leukocytosis) can be a sign of infection, inflammatory conditions, tissue damage, allergies, or cancer, especially leukemia. Minor elevations in the WBC count can be seen after strenuous exercise, during periods of stress, and with pregnancy.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong><br>
+                                        1. Wash your hands frequently to reduce the risk of infection.
+                                        <br>2. Avoid potential allergens.
+                                        <br>3. Do not smoke.
+                                        <br>4. Practice good dental hygiene.
+                                        <br>5. Visit your dentist every six months.
+                                        <br>6. Take all medications as directed by your healthcare provider.
+                                        <br>7. Find ways to reduce your stress levels, like mindfulness or meditation.
+                                        <br>8. Seek treatment for anxiety or depression as needed.
+                                    </div>
+                                        
+                                    {% elif  all_report.wbc < 5000 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">Low White Blood Cells</font></strong>- A low WBC count (leukopenia) can be seen with several bone marrow diseases, lymphoma, severe infections, enlargement of the liver and spleen, certain autoimmune diseases, HIV/AIDS, radiation therapy or chemotherapy, and with some medications (especially certain antibiotics). White blood cell counts that are very low can produce susceptibility to infections.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>To minimize the chances of certain diseases and a low white blood cell count:
+                                        <br>
+                                        1. Practice good hygiene. For instance, wash your hands after using the bathroom and before cooking.
+                                        <br>2. Be careful around pets and other animals that might transmit infections.
+                                        <br>3. Make sure foods are thoroughly cooked before eating them.
+                                        <br>4. Stay away from people who have infections.
+                                        <br>5. Practice safe sex; avoid drugs and sharing needles.
+                                    </div>
+        
+                                    {% else %}
+                                        <strong><font size="+1">Optimal Range!!</font></strong> Your WBC is in optimal range. You are healthy.
+                                    {% endif %}
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Platelet Count</td>
+                    <td>1500000-4000000 platelets/mcL</td>
+                    {% if all_report %}
+                    <td>{{all_report.pc}} platelets/mcL</td>
+                    {% endif %}
+                    <td>
+                      
+                       
+                            <a class="button" href="#popup3">Read More</a>
+                    
+                        
+                        <div id="popup3" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a><br>
+                                <div class="content">
+                                    
+                                    {% if all_report.pc >= 4000000 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">High Platelet Count</font></strong>- An elevated platelet count (thrombocytosis) can be seen with blood loss from surgery or trauma, hemolytic anemias, certain bone marrow disorders, infections, cancers, or spleen removal. Very high platelet counts can lead to excessive blood clotting.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br><strong><font size="+1">Eat healthy foods</font></strong>- Choose a varied diet rich in whole grains, vegetables and fruits, and low in saturated fats. Try to avoid trans fats. Learn about portion control to maintain a normal weight.
+                                        <br><strong><font size="+1">Increase your physical activity</font></strong>- Aim for at least 30 minutes of moderate physical activity a day. Take a brisk daily walk, ride your bike or swim laps.
+                                        <br><strong><font size="+1">Stop smoking</font></strong>- Smoking increases your risk of blood clots. If you smoke, take steps to stop
+                                    </div>
+                                    
+                                    {% elif  all_report.pc <= 1500000 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">Low Platelet Count</font></strong>- A low platelet count (thrombocytopenia) can be seen with an enlarged liver or spleen, chemotherapy or radiation treatment, disorders of the bone marrow that reduce the production of blood cells, autoimmune diseases, and drugs (including furosemide, NSAIDs, and several antibiotics). A low platelet count can disrupt the blood clotting mechanism and lead to excessive bleeding.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong><br>
+                                        1. Eating more leafy greens.
+                                        <br>2. Eating more fatty fish.
+                                        <br>3. Increasing folate consumption.
+                                        <br>4. Avoiding alcohol.
+                                        <br>5. Eating more citrus.
+                                        <br>6. Consuming more iron-rich foods.
+                                        <br>7. Trying a chlorophyll supplement.
+                                        <br>8. Avoiding vitamin E and fish oil supplements.
+                                    </div>
+                                    
+                                    {% else %}
+                                        <strong><font size="+1">HURRAY!!</font></strong> Your platelet count is in optimal range. You are healthy.
+                                    {% endif %}
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Hemoglobin</td>
+                    <td>12-16 gm/dL</td>
+                    {% if all_report %}
+                    <td>{{all_report.hgb}} gm/dL</td>
+                    {% endif %}
+                    <td>
+                      
+                       
+                            <a class="button" href="#popup4">Read More</a>
+                    
+                        
+                        <div id="popup4" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a><br>
+                                <div class="content">
+        
+                                    {% if all_report.hgb > 16 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">High Hemoglobin</font></strong>- Elevated hemoglobin levels can occur with conditions that chronically reduce the amount of oxygen in the blood, such as chronic lung or heart disease, smoking, or living at high altitude. Increased hemoglobin can also result from diseases that increase the number of red blood cells in the blood such as polycythemia vera, and various cancers.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br><strong><font size="+1">Diet</font></strong>- The most impactful changes you can make for your blood sugar levels are dietary, specifically cutting back on or eliminating your sugar and starch consumption.
+                                        <br><strong><font size="+1">Exercise</font></strong>- Exercise naturally fires up your body's insulin activity. Insulin is the hormone that helps sugar leave your bloodstream and get into your cells to energize them.
+                                        <br><strong><font size="+1">Manage stress and mental health</font></strong>- When our bodies are stressed or anxious, our stress hormone - cortisol - takes over. Cortisol prepares us for fight or flight by giving us an energy boost, which in fact is a blood sugar level spike. 
+                                    </div>
+        
+                                    {% elif  all_report.hgb < 12 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">Low Hemoglobin</font></strong>- Low hemoglobin levels most often result from an overall reduction in the number of red blood cells due to anemia. Low hemoglobin can also be caused by various cancers, bone marrow diseases, thyroid disease, blood loss, inflammatory conditions, and enlarged spleen.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br><br><strong><font size="+1">Increasing iron intake</font></strong>- A person with reduced levels of hemoglobin may benefit from eating more iron-rich foods. Iron works to boost the production of hemoglobin, which also helps to form more red blood cells.
+                                        <br><br><strong><font size="+1">Increasing folate intake</font></strong>- Folate is a type of vitamin B that plays an essential part in hemoglobin production. The body uses folate to produce heme, a component of hemoglobin that helps to carry oxygen.
+                                        <br><br><strong><font size="+1">Maximizing iron absorption</font></strong>- Foods rich in vitamin C, such as citrus fruits, strawberries, and leafy green vegetables, can boost the amount of iron absorbed. Taking a vitamin C supplement may also help.
+                                        <br><br><strong><font size="+1">Taking iron supplements</font></strong>- A doctor may advise a person with extremely low levels of hemoglobin to take iron supplements. The dosage will depend on a person's levels.
+                                    </div>
+        
+                                    {% else %}
+                                        <strong><font size="+1">HURRAY!!</font></strong> Your platelet count is in optimal range. You are healthy.
+                                    {% endif %}
+        
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Red Cell Distribution</td>
+                    <td>11.6-14.6 g/dL</td>
+                    {% if all_report %}
+                    <td>{{all_report.rcd}} g/dL</td>
+                    {% endif %}
+                    <td>   
+                            <a class="button" href="#popup5">Read More</a>       
+                        <div id="popup5" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a><br>
+                                <div class="content">
+        
+                                    {% if all_report.rcd > 14.6 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">High Red Cell Distribution</font></strong>- 
+                                        A high RDW indicates that there is a lot of variability in size in a persons red blood cells. This fact can be helpful in assessing the cause of anemia, especially when also taking the MCV into account.
+                                        
+                                        A high RDW along with a high MCV is seen in anemia due to vitamin B12 or folate deficiency, hemolytic anemia, liver disease, post chemotherapy, and with various bone marrow disorders.
+            
+                                        A high RDW along with a low MCV is seen in iron deficiency anemia and in people who have both sickle cell and beta-thalassemia.
+                                        
+                                        A high RDW with a normal MCV can be seen in very early B12, folate, or iron deficiency. This pattern of red cell indices can also occur with chronic liver disease, with various bone marrow disorders, and with the combination of iron deficiency and either folate or B12 deficiency.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br>If your test results indicate you have a chronic blood disorder, such as anemia, you may be put on a treatment plan to increase the amount of oxygen that your red blood cells can carry. Depending on your specific condition, your doctor may recommend iron supplements, medications, and/or changes in your diet
+                                    </div>
+        
+                                    {% elif  all_report.rcd < 11.6 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">Low Red Cell Distribution</font></strong>- 
+                                        A RDW result in the low range is an unusual result, which is not thought to have any clinical significance.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br>Eat a healthy and nutritious diet in order to prevent nutrient deficiencies. It is important that your diet includes enough iron, folate, and vitamin B12 [8, 11, 12]. Correcting nutritional deficiencies can help improve red blood cell production and decrease RDW levels.
+                                    </div>
+        
+                                    {% else %}
+                                        <strong><font size="+1">HURRAY!!</font></strong> 
+                                        A RDW in the optimal range can be quite useful in evaluating the cause of a persons anemia.
+        
+                                        A normal RDW with a low MCV in a person with anemia can indicate anemia of chronic disease or thalassemia.
+                                        
+                                        A normal RDW with a high MCV can be seen with liver disease, chemotherapy, or bone marrow disease.
+                                        
+                                        A normal RDW with a normal MCV in a person with anemia may be a sign of anemia of chronic disease or anemia due to blood loss.
+                                    {% endif %}
+        
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Mean Corpuscular Hb Conc</td>
+                    <td>33-36 g/dL</td>
+                    {% if all_report %}
+                    <td>{{all_report.mchc}} g/dL</td>
+                    {% endif %}
+                    <td>
+                            <a class="button" href="#popup6">Read More</a>       
+                        
+                        <div id="popup6" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a><br>
+                                <div class="content">
+        
+                                    {% if all_report.mchc > 36 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">High Mean Corpuscular Hb Conc</font></strong>- An elevated MCHC often indicates macrocytic anemia due to vitamin B12 or folate deficiency. It can also be seen with hyperthyroidism, liver disease, and a hereditary condition called spherocytosis.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br>Treatments for conditions causing high MCHC can include corticosteroids, splenectomy, and blood transfusions. Talk to your doctor about your blood test results. They'll be able to answer your questions and describe your treatment plan.
+                                    </div>
+        
+                                    {% elif  all_report.mchc <= 33 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">Low Mean Corpuscular Hb Conc</font></strong>- A low MCHC is most often an indication of iron deficiency anemia. It can also be seen with lead poisoning, hemolytic anemia, and various cancers.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br>1.Increase iron in your diet.
+                                        <br>2.Take iron supplements.
+                                        <br>3.Get more vitamin B6, which is necessary for proper absorption of iron.
+                                        <br>4.Add more fiber to your diet, which can help improve the intestinal absorption of iron.
+                                        <br>5.Take no more than the daily requirement of calcium, as too much can make it difficult for your body to absorb iron.
+                                    </div>
+        
+                                    {% else %}
+                                        <strong><font size="+1">HURRAY!!</font></strong> The MCHC measures the average concentration of hemoglobin per red blood cell. Your results are normal.
+                                    {% endif %}
+        
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Mean Platelet Volume</td>
+                    <td>7.5-12.5 fL</td>
+                    {% if all_report %}
+                    <td>{{all_report.mpv}} fL</td>
+                    {% endif %}
+                    <td>
+                      
+                       
+                            <a class="button" href="#popup7">Read More</a>
+                    
+                        
+                        <div id="popup7" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a><br>
+                                <div class="content">
+        
+                                    {% if all_report.mpv > 12.5 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">High Mean Platelet Volume</font></strong>- A high MPV indicates that a person's platelets are larger than normal. This may occur with a number of conditions including various cancers, heart disease, diabetes, atrial fibrillation, and hyperthyroidism. It may also occur following a bleeding episode or any other condition in which many platelets have been recently consumed, and the bone marrow is working overtime to replace the used-up platelets with younger, larger platelets. Not all causes are serious, and your doctor is the best person to determine the cause of high results.About This Test
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br><strong><font size="+1">Address Underlying Conditions</font></strong>- A high MPV is often due to an underlying medical condition. The most important thing is to work with your doctor to find out what's causing your high MPV and to treat any underlying conditions!
+                                        <br><strong><font size="+1">Lose Weight</font></strong>- Diabetes and obesity are associated with higher MPV.
+                                        <br><strong><font size="+1">Check Vitamin D Levels</font></strong>- Check your vitamin D levels. Vitamin D deficiency can increase MPV
+                                        <br><strong><font size="+1">Stop Smoking</font></strong>
+                                    </div>
+        
+                                    {% elif  all_report.mpv < 7.5 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">Low Mean Platelet Volume</font></strong>- A low MPV means that platelets are smaller than average. Usually, a low MPV does not have any particular significance. It can, however, occur with various bone marrow disorders, inflammatory bowel disease, or following chemotherapy.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br><strong><font size="+1">Inflammatory Diseases</font></strong>- Some inflammatory diseases, such as rheumatoid arthritis, lupus, inflammatory bowel disease (IBD), and familial Mediterranean fever have been associated with low MPV.
+                                        <br><strong><font size="+1">Impaired Bone Marrow Function</font></strong>-  New platelets are not produced by the bone marrow, so older, smaller platelets make up a larger proportion of all the platelets in the bloodstream.
+                                        <br><strong><font size="+1">Chemotherapeutics</font></strong>- Drugs that kill cells or reduce their division, such as chemotherapy drugs, can decrease platelet production and MPV
+                                        <br><strong><font size="+1">Genetic Disorders</font></strong>- Some rare genetic clotting disorders have been associated with lower MPV
+                                    </div>
+        
+                                    {% else %}
+                                        <strong><font size="+1">Well Done!!</font></strong> Platelets (or thrombocytes), the tiniest cells in the blood, participate in the blood clotting mechanism. This test measures the average size of a persons platelets. Your results are normal.
+                                    {% endif %}
+        
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Mean Cell Volume</td>
+                    <td>80-96 fL per red blood cell</td>
+                    {% if all_report %}
+                    <td>{{all_report.mcv}} fL per red blood cell</td>
+                    {% endif %}
+                    <td>
+        
+                            <a class="button" href="#popup8">Read More</a>       
+                        
+                        <div id="popup8" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a><br>
+                                <div class="content">
+        
+                                    {% if all_report.mcv > 96 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">High Mean Cell Volume</font></strong>- 
+                                        Anemias associated with a high MCV, in which the size of red blood cells is higher than normal, are called the macrocytic anemias. Macrocytic anemia is most often caused by vitamin B12 or folic acid deficiencies. An elevated MCV can also be seen with hypothyroidism, liver disease, alcohol abuse, and various bone marrow disorders.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        Interpreting a high MCV in conjunction with the RDW can often give more specific clues as to the cause of the anemia. Given the variety of reasons for an abnormal count, your doctor will help you put your results into context and decide if next steps are needed.
+                                    </div>
+        
+                                    {% elif  all_report.mcv < 80 %}
+                                    <div class="scrolls">
+                                        <strong><font size="+1">Low Mean Cell Volume</font></strong>- A reduced MCV, indicating that red blood cells are smaller than normal, is most commonly seen in iron deficiency anemia. Low MCV anemia (also called microcytic anemia) can also occur with thalassemia, sideroblastic anemia, and anemia of chronic disease. Interpreting a low MCV in conjunction with the RDW can often give more specific clues as to the cause of the anemia.
+                                        <br><br>
+                                        <strong><font size="+1">Remedies:</font></strong>
+                                        <br>
+                                        This can be done with supplements or foods like spinach and red meat. You may be able to take supplements that include folate and other B vitamins. You may also need vitamin B-12 injections if you don't absorb oral vitamin B-12 properly.
+                                    </div>
+        
+                                    {% else %}
+                                        <strong><font size="+1">HURRAY!!</font></strong> Your mean cell volume is in optimal range. You are healthy.
+                                    {% endif %}
+        
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                </div>
+                </table>
+        
+                  </div>
+                </div>
+                <div id="rightbox">
+                    <form action="/addComment/" method="post">
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        
+                        <input type="submit" value="Confirm">
+                    </form>
+                </div>
+            <br>
+            <!---naverbar-2-->
+            <br>
+         <div class="asa">
+            {% block link %}
+                    {% if all_report.file %}
+        
+                    <h2>DOWNLOAD THE File FROM HERE: <br><a href="{{all_report.file.url}}" download>{{all_report.name}}</a></h2>
+        
+                    {% elif all_report.image %}
+        
+                    <h2>DOWNLOAD THE Image FROM HERE: <a href="{{all_report.image}}" download>{{all_report.name}}</a></h2>
+                
+                {% endif %} 
+        {% endblock %}
+          </div> 
+         {% comment %} <div class="formsss">
+        <form action="/addComment/" method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            
+            <input type="submit" value="Confirm">
+        </form>
+    </div>  {% endcomment %}
+            <script>
+                $('#recipeCarousel').carousel({
+                    interval: 10000
+                })
+            
+                $('.carousel .carousel-item').each(function () {
+                    var minPerSlide = 3;
+                    var next = $(this).next();
+                    if (!next.length) {
+                        next = $(this).siblings(':first');
+                    }
+                    next.children(':first-child').clone().appendTo($(this));
+            
+                    for (var i = 0; i < minPerSlide; i++) {
+                        next = next.next();
+                        if (!next.length) {
+                            next = $(this).siblings(':first');
+                        }
+            
+                        next.children(':first-child').clone().appendTo($(this));
+                    }
+                });
+            
+        // slider js
+        // const slideValue = document.querySelector("span");
+        
+        
+            </script>
+        
+            <hr>
+            
+            </div> 
+        </div>
+        </div>
+          
+        <script>
+        
+          $(".nav").click(function(){
+            $("#mySidenav").css('width','70px');
+            $("#main").css('margin-left','70px');
+            $(".logo").css('visibility', 'hidden');
+            $(".logo span").css('visibility', 'visible');
+             $(".logo span").css('margin-left', '-10px');
+             $(".icon-a").css('visibility', 'hidden');
+             $(".icons").css('visibility', 'visible');
+             $(".icons").css('margin-left', '-8px');
+              $(".nav").css('display','none');
+              $(".nav2").css('display','block');
+          });
+        
+        $(".nav2").click(function(){
+            $("#mySidenav").css('width','300px');
+            $("#main").css('margin-left','300px');
+            $(".logo").css('visibility', 'visible');
+             $(".icon-a").css('visibility', 'visible');
+             $(".icons").css('visibility', 'visible');
+             $(".nav").css('display','block');
+              $(".nav2").css('display','none');
+         });
+        
+        </script>
+        
+        
+        </body>
+        
+        
+        </html>

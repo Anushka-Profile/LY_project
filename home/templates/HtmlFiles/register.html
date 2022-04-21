@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="{% static 'users/css/register.css' %}">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <!--Font awesome link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>SignUp</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+  function validate(form) {
+     
+      var em= document.getElementById('id_email').value;
+      var ema = document.getElementById('id_email');
+      var us= document.getElementById('id_username').value;
+      var usa = document.getElementById('id_username');
+      var gend=document.getElementById('id_gender').value;
+      var gen=document.getElementById('id_gender');
+
+      var hei = document.getElementById('id_height').value;
+      var heig= document.getElementById('id_height');
+      var wei= document.getElementById('id_weight').value;
+      var weig= document.getElementById('id_weight');
+      var fn=document.getElementById('id_first_name').value;
+      var fna= document.getElementById('id_first_name');
+      var ln=document.getElementById('id_last_name').value;
+      var lna= document.getElementById('id_last_name');
+      var pass1 = document.getElementById('id_password1').value;
+      var passs1 = document.getElementById('id_password1');
+
+      var pass2 = document.getElementById('id_password2').value;
+      var passs2 = document.getElementById('id_password2');
+
+      
+      var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      var we=/^\d{2,3} ?$/;
+      var fname=/^[A-Za-z]+$/;
+      var lname=/^[A-Za-z]+$/;
+      
+      var he=/^[0-9]+ ?(\'cm\")?( *[1-9]+ ?(\"cm)?)?$/;
+  if(usa.value!=""){
+    usa.style.border = "green solid 3px";
+    if(gen.value!=""){
+   
+   gen.style.border = "green solid 3px";
+    if (fname.test(fn)) {
+      fna.style.border = "green solid 3px";
+      if (lname.test(ln)){ 
+        lna.style.border = "green solid 3px";
+        if (re.test(em) ){
+          ema.style.border = "green solid 3px";
+          if (pass1 == pass2){
+            passs1.style.border = "green solid 3px";
+            passs2.style.border = "green solid 3px";
+            if(he.test(hei)){ 
+              heig.style.border = "green solid 3px";
+              if(we.test(wei)){
+                weig.style.border = "green solid 3px";
+              document.getElementById("myForm").submit();
+                 return true;}
+                 else{
+                  weig.style.border = "red solid 3px";
+                  return false;}
+                 }
+                 else{
+                  heig.style.border = "red solid 3px";
+                  return false;}}
+                 else{
+                  passs1.style.border = "red  solid 3px";
+                  passs2.style.border = "red solid 3px";
+                 }
+            
+            }
+            
+
+      else{
+        ema.style.border = "red solid 3px";
+      return false;
+      }
+    }
+    else {
+      lna.style.border = "red solid 3px";
+      return false;
+  }
+    }
+    else {
+      fna.style.border = "red solid 3px";
+      return false;
+  }}
+  else
+  {
+    gen.style.border = "red solid 3px";
+    return false;
+
+  }}
+else{
+  usa.style.border = "red solid 3px";
+    return false;
+
+  }
+  }
+
+
+  
+                
+
+
+{% comment %} 
+var age =/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
+if (pass1 ==pass2) {
+  passs2.style.border = "red solid 3px";
+document.getElementById("myForm").submit();
+;
+} else {
+passs2.style.border = "red solid 3px";
+            return false;
+
+} {% endcomment %}
+{% comment %}        
+var pass1=document.getElementById('id_password1').value;
+var passs1=document.getElementById('id_password1');
+var pass2=document.getElementById('id_password2').value;
+var passs2=document.getElementById('id_password2'); {% endcomment %}
+   
+  </script>
+  <!--Navbar-->
+  <nav   class="navbar navbar-expand-lg navbar-light bg-transperant sticky-top">
+
+    <a style="color:black;"  class="navbar-brand" href="/homebefore/">
+    <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+        <li class="nav-item" >
+            <a style="color:black;" class="nav-link" href="/homebefore/">Home</a>
+        </li>
+  <li class="nav-item">
+            <a style="color:black;" class="nav-link" href="/login/">Login</a>
+        </li>
+  <li class="nav-item">
+            <a style="color:black;"  class="nav-link" href="/register/">Register</a>
+        </li>
+        
+  
+        
+      </ul>
+    </div>
+  </nav>
+  <!-- signUp-Modal-->
+ <div>
+
+      <div class="center">
+    
+        <form id="myForm" method="post">
+          {% csrf_token %}
+          <h1>Register</h1>
+          <div class="scroll">
+         
+	                    	{{ register_form|crispy}}     
+                
+                        <input type="button" onclick="validate()"  value="Register"><br>
+                         <p style="text-align:center;" </p>Already a member? <a href="/login/">Login</a>
+                 
+                        </div>
+	</form>
+  
+
+</div>
+            
+        
+
+</div>
+
+
+
+</body>
+
+</html>

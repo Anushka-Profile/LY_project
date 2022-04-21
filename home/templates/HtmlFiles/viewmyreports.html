@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'users/css/viewmyreports.css' %}">
+    <!--Font awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>DoCure</title>
+</head>
+
+<body>
+       
+<div class="ok">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light  bg-transperant sticky-top">
+
+        <a class="navbar-brand" href="/home/">
+        <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+        </a>
+  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link"style="color:black;" href="/home/">Home</a>
+            </li>
+			<li class="nav-item">
+                <a class="nav-link"style="color:black;" href="/viewmyreports/">MyReports</a>
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" style="color:black;"href="/FILE/">Upload</a>
+            </li>
+            <li class="nav-item">
+                <font size="+2"><a class="nav-link" style="color:black;"href="/viewDoctor/" >Book A Doctor</a></font>
+            </li>
+			<li class="nav-item">
+      {% if user.is_authenticated %}
+      {% csrf_token %}
+      <font size="+3"> <a class="nav-link" style="color:black;"href="/userProfile/">{{name}}</a></font>
+                {% endif %}
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" style="color:black;"href="/logout/">Logout</a>
+            </li>
+            
+          </ul>
+        </div>
+      </nav>
+
+    <table border="1" style="text-align: center; margin-left:15%;">
+        <h4 style="margin-top:5%;">My Reports<h4>
+        
+        {% if posts %}
+       
+        <tr>
+            <th>Time of Report</th>
+            <th>Filename</th>
+            <th>View Dashboard</th>
+            <th>Delete Report</th>
+          </tr>
+          {% for i in page_obj.object_list %}
+        <tr>
+             <td>{{i.date}}</td>
+             <td>{{i.name}}</td>
+             <td><div style="text-align: center;">
+                <a href="{% url 'dashboard' i.id%}"class="accept" name="{{i}}"
+                    data-target="#loginModal1" value="{{i}}">ViewReports<span class="fa fa-check"></span></a></div></td>
+            <td>
+                <a href="{% url 'deleteReport' i.id %}"class="deny" name="remove"
+                data-target="#loginModal1" value="reject">Delete Report<span class="fa fa-check"></span></a>  
+            </td>
+
+                    
+        </tr>
+         
+        {% endfor %}  
+
+        {% else %}
+
+        <h2>No reports available</h2>
+
+        
+        {% endif %}
+
+        
+    </table>
+
+    <center>
+        {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+        {% endif %}
+        <span>{{page_obj.number}}</span> {# the current page number #}
+        
+        {%if page_obj.has_next %} {# whether the next page exists #}
+            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+        {% endif %}
+    </center>
+</div>
+</body>
+</html>

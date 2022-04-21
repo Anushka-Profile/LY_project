@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  {% load static %}
+    <head>
+        <title>About Us</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		    <link rel="stylesheet" type="text/css" href="{% static 'users/css/about.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
+    </head>
+    
+    <body>
+      <div class="abouts">
+      <nav class="navbar navbar-expand-lg navbar-light  bg-transperant sticky-top">
+
+        <a class="navbar-brand" href="/home/">
+        <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+        </a>
+  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/home/">Home</a>
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" href="/viewmyreports/">MyReports</a>
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" href="/FILE/">Upload</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/viewDoctor/" >Book A Doctor</a>
+            </li>
+			<li class="nav-item">
+      {% if user.is_authenticated %}
+      {% csrf_token %}
+                <a class="nav-link" href="/userProfile/">{{name}}</a>
+                {% endif %}
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" href="/logout/">Logout</a>
+            </li>
+            
+          </ul>
+        </div>
+      </nav>
+
+
+    <div class="about-section">
+      <!-- <h1>About Us</h1> -->
+       <h3 style="text-align:center">Our Features:</h3>
+           <li style="list-style: none">Loss of medical data due to inefficient maintenance</li> 
+           <li style="list-style: none" >Difficult access of data by patients and doctors</li> 
+           <li style="list-style: none">Improper interpretation of report data</li> 
+           <li style="list-style: none">Insecure storage of data</li>
+          
+    </div>
+    
+    <h2 style="text-align:center">Meet our Team</h2>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YW5pbWFsc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" 
+          alt="Anushka" style="width:100%">
+          <div class="container">
+            <h2>Anushka Darade</h2>
+            <p class="title">Member 1</p>
+            <!-- <p>Some text that describes me lorem ipsum ipsum lorem.</p> -->
+            <p>anushka.darade@somaiya.edu</p>
+            <!-- <p><button class="button">Contact</button></p> -->
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YW5pbWFsc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" alt="Tirth" style="width:100%">
+          <div class="container">
+            <h2>Dhairya Umrania</h2>
+            <p class="title">Art Director</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YW5pbWFsc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" 
+          alt="Anushka" style="width:100%">
+          <div class="container">
+            <h2>Tirth Thaker</h2>
+            <p class="title">Designer</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>john@example.com</p>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YW5pbWFsc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" 
+          alt="Anushka" style="width:100%">
+          <div class="container">
+            <h2>Utsav Parekh</h2>
+            <p class="title">Designer</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>john@example.com</p>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+    </body>
+</html>

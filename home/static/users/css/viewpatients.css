@@ -1,0 +1,88 @@
+table,th, td {
+    border: 1px solid;
+    color: #fff; background: ;
+
+  }
+  
+  table {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 2%;
+  }	*{
+margin: 0;
+padding: 0;
+font-family: 'Roboto', sans-serif;
+}
+.ok{
+width:100%;
+height: 100vh;
+background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0,0,0,0.7)),url("/static/images/BG.jpg");
+background-size: cover;
+background-size: cover;
+overflow: auto;
+box-sizing: border-box;
+}
+.navbar{
+height: 12%;
+display:flex;
+align-items: center;
+}
+.logo{
+width:50px;
+cursor: pointer;
+}
+.menu-icon{
+width:30px;
+cursor: pointer;
+margin-left: 40px;
+}
+nav{
+flex: 1;
+text-align: right;
+}
+nav ul li{
+list-style: none;
+display: inline-block;
+margin-left: 60px;
+}
+nav ul li a{
+text-decoration: none;
+color: #fff;
+font-size: 13px;
+}
+.row{
+display: flex;
+height: 88%;
+align-items: center;
+}
+.col{
+flex-basis: 50%;
+}
+h1{
+color: #fff;
+font-size: 100px;
+}
+
+p{
+color: #fff;
+font-size: 11px;
+line-height: 15px;
+}
+
+  .accept {
+    color: #FFF;
+    background: #44CC44;
+    
+  }
+  .accept:hover {
+    background: #6FE76F;
+    box-shadow: 0 4px 0 0 #7ED37E;
+  }
+  .deny {
+    color: #FFF;
+    background: tomato;
+  }
+  .deny:hover {
+    background: rgb(255, 147, 128);
+    box-shadow: 0 4px 0 0 #EF8282;
+  }

@@ -1,0 +1,1 @@
+web: gunicorn DoCure.wsgi --log-file -

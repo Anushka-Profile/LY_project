@@ -1,0 +1,110 @@
+<html lang="en">
+    {% load  static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/viewpatients.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="ok">
+    <nav class="navbar navbar-expand-lg navbar-light  bg-transperant sticky-top">
+
+        <a class="navbar-brand" href="/home/">
+        <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+        </a>
+  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link"style="color:black;" href="/viewPatients/">Home</a>
+            </li>
+			
+			<li class="nav-item">
+      {% if name %}
+      {% csrf_token %}
+      <font size="+3"> <a class="nav-link" style="color:black;"href="/doctorProfile/">{{name.username}}</a></font>
+                {% endif %}
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" style="color:black;"href="/Doctorlogout_view/">Logout</a>
+            </li>
+            
+          </ul>
+        </div>
+      </nav>
+        <div style="text-align: center;">
+    <h1 style="margin-top:2%;">My Patients</h1>
+    <br>
+    <table style="text-align: center;">
+
+    <tr>
+        <th>Name</th>
+        <th>Option</th>
+      </tr>
+    {% for p in curr %}
+
+    <td>
+        
+        <h2>{{p.username}}</h2>
+    </td>
+    <td>
+        <div style="text-align: center;">
+            <a href="{% url 'docViewReports' p.id %}"class="accept" name="{{i}}"
+                data-target="#loginModal1" value="{{i}}">ViewReports<span class="fa fa-check"></span></a></div>  &nbsp
+                <a href="{% url 'removePatient' p.id %}"class="deny" name="remove"
+                data-target="#loginModal1" value="reject">Remove Patient<span class="fa fa-check"></span></a>
+        </tr>
+        {% endfor %}
+        </td>
+    </table>
+       <br>
+       <br>
+    <div style="text-align: center;">
+    <h1>Pending Requests</h1>
+    
+    <table style="text-align: center;">
+
+        <tr>
+          <th>Name</th>
+          <th>Option</th>
+        </tr>
+        {% for p in pend %}
+        <tr>
+            <td>
+                <h2>{{p}}   </h2>
+            </td>
+            <td>
+            <div style="text-align: center;">
+                <a href="{% url 'pendingReq' user_id=p.id ar=1%}"class="accept" name="accept"
+                data-target="#loginModal1" value="accept">ACCEPT <span class="fa fa-check"></span></a>
+        &nbsp
+        <a href="{% url 'pendingReq' user_id=p.id ar=0%}"class="deny" name="reject"
+                data-target="#loginModal1" value="reject">DENY <span class="fa fa-check"></span></a>
+                </div>
+                </td>
+            
+          </tr>
+          {% endfor %}
+        </table>
+    </div>
+</DIV>
+    <BR>
+    
+        
+                
+    </div>
+</body>
+</html>

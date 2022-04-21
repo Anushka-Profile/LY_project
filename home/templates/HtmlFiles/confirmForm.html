@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+{% load crispy_forms_tags %}
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="{% static 'users/css/edit.css' %}">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <!--Font awesome link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>DoCure</title>
+</head>
+
+<body>
+  
+  <div class="ok">
+  <!--Navbar-->
+  <nav   class="navbar navbar-expand-lg navbar-light bg-transperant sticky-top">
+
+    <a style="color:black;"  class="navbar-brand" href="/home/">
+    <img src='{% static 'users/images/logo1.jpeg' %}' width="90" height="30" alt="">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+        <li class="nav-item" >
+            <a style="color:black;" class="nav-link" href="/home/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:black;"href="/logout/">Logout</a>
+      </li>
+      
+ 
+  
+        
+      </ul>
+    </div>
+  </nav>
+  <font size="+3"><h6 style="text-align:center;">Please Confirm Your Values</h6></font>
+  <div class="dd">
+    <form id="myForm" action="/viewmyreports/" method="post">
+  <div class="scroll">
+        {% csrf_token %}
+        {{form|crispy}}
+        
+        <input type="submit" onclick="validate()"  value="Confirm">
+ 
+    </form>
+  </div>
+</div>
+  
+</body>
+</html>
